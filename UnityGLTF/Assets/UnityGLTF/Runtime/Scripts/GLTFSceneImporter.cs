@@ -146,6 +146,12 @@ namespace UnityGLTF
 		}
 
 		/// <summary>
+		/// The maximum texture width. Will resize to this size if texture is bigger. The height of texture is based on ratio.
+		/// Set to a high number to disable.
+		/// </summary>
+		public int MaxTextureWidth = 8192;
+
+		/// <summary>
 		/// The parent transform for the created GameObject
 		/// </summary>
 		public Transform SceneParent { get; set; }
@@ -819,6 +825,21 @@ namespace UnityGLTF
 
 				await YieldOnTimeoutAndThrowOnLowMemory();
 				await CheckMimeTypeAndLoadImage(image, texture, buffer, markGpuOnly);
+			}
+
+			if (texture.width > MaxTextureWidth || texture.height > MaxTextureWidth)
+			{
+				float ratio = texture.height / texture.width;
+
+				Texture2D smallerTexture = new Texture2D(MaxTextureWidth, (int)(MaxTextureWidth * ratio), TextureFormat.RGBA32, true);
+				smallerTexture.filterMode = texture.filterMode;
+				smallerTexture.wrapModeU = texture.wrapModeU;
+				smallerTexture.wrapModeV = texture.wrapModeV;
+
+				Graphics.ConvertTexture(texture, smallerTexture);
+				
+				UnityEngine.Object.Destroy(texture);
+				texture = smallerTexture;
 			}
 
 			Debug.Assert(_assetCache.ImageCache[imageCacheIndex] == null, "ImageCache should not be loaded multiple times");
