@@ -2406,7 +2406,10 @@ namespace UnityGLTF
 
 					if (!matchSamplerState)
 					{
-						Debug.LogWarning($"Ignoring sampler; filter mode: source {source.filterMode}, desired {desiredFilterMode}; wrap mode: source {source.wrapModeU}x{source.wrapModeV}, desired {desiredWrapModeS}x{desiredWrapModeT}");
+						// Debug.LogWarning($"Ignoring sampler; filter mode: source {source.filterMode}, desired {desiredFilterMode}; wrap mode: source {source.wrapModeU}x{source.wrapModeV}, desired {desiredWrapModeS}x{desiredWrapModeT}");
+						source.filterMode = desiredFilterMode;
+						source.wrapModeU = desiredWrapModeS;
+						source.wrapModeV = desiredWrapModeT; 
 					}
 				}
 				else
