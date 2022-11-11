@@ -17,7 +17,7 @@ The library was originally designed to work with Unity 5.6 and above, but is cur
 You can install this package from git, compatible with UPM (Unity Package Manager).
 1. Open `Window > Package Manager`
 2. In Package Manager, click <kbd>+</kbd> and select <kbd>Add Package from git URL</kbd>
-3. Paste ```https://github.com/prefrontalcortex/UnityGLTF.git?path=/UnityGLTF/Assets/UnityGLTF```
+3. Paste ```https://github.com/GemHunter1/UnityGLTF.git?path=/UnityGLTF/Assets/UnityGLTF```
 4. Click <kbd>Add</kbd>.  
    
 Done! 
