@@ -829,7 +829,7 @@ namespace UnityGLTF
 
 			if (texture.width > MaxTextureWidth || texture.height > MaxTextureWidth)
 			{
-				float ratio = texture.height / texture.width;
+				float ratio = texture.height / (float)texture.width;
 
 				Texture2D smallerTexture = new Texture2D(MaxTextureWidth, (int)(MaxTextureWidth * ratio), TextureFormat.RGBA32, true);
 				smallerTexture.filterMode = texture.filterMode;
