@@ -831,7 +831,7 @@ namespace UnityGLTF
 			{
 				float ratio = texture.height / (float)texture.width;
 
-				Texture2D smallerTexture = new Texture2D(MaxTextureWidth, (int)(MaxTextureWidth * ratio), TextureFormat.RGBA32, true);
+				Texture2D smallerTexture = new Texture2D(MaxTextureWidth, (int)(MaxTextureWidth * ratio), TextureFormat.RGBA32, GenerateMipMapsForTextures);
 				smallerTexture.filterMode = texture.filterMode;
 				smallerTexture.wrapModeU = texture.wrapModeU;
 				smallerTexture.wrapModeV = texture.wrapModeV;
