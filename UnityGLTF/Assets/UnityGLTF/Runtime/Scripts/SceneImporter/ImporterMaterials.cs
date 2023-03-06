@@ -33,8 +33,9 @@ namespace UnityGLTF
 				{
 					mapper = new UnlitMap(CustomShaderName, null, MaximumLod);
 				}
-				else
+				else if (UseShaderGraph)
 				{
+					
 #if UNITY_2021_3_OR_NEWER
 					mapper = new UnlitGraphMap();
 #elif UNITY_2019_1_OR_NEWER
@@ -46,6 +47,10 @@ namespace UnityGLTF
 					mapper = new UnlitMap(MaximumLod);
 #endif
 				}
+				else
+				{
+					mapper = new UnlitMap(MaximumLod);
+				}
 			}
 			else
 			{
@@ -53,7 +58,7 @@ namespace UnityGLTF
 				{
 					mapper = new MetalRoughMap(CustomShaderName, MaximumLod);
 				}
-				else
+				else if (UseShaderGraph)
 				{
 					// do we have URP or Unity 2021.2+? Use the PBR Graph Material!
 #if UNITY_2021_3_OR_NEWER
@@ -66,6 +71,10 @@ namespace UnityGLTF
 #else
 					mapper = new MetalRoughMap(MaximumLod);
 #endif
+				}
+				else
+				{
+					mapper = new MetalRoughMap(MaximumLod);
 				}
 			}
 

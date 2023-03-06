@@ -187,6 +187,11 @@ namespace UnityGLTF
 		/// </summary>
 		public string CustomShaderName { get; set; }
 
+		/// <summary>
+		/// Enable shader graph material
+		/// </summary>
+		public bool UseShaderGraph { get; set; } = true;
+
 		public GameObject LastLoadedScene
 		{
 			get { return _lastLoadedScene; }
