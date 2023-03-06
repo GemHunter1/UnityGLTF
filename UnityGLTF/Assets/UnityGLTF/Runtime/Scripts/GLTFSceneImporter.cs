@@ -162,6 +162,12 @@ namespace UnityGLTF
 		}
 
 		/// <summary>
+		/// The maximum texture width. Will resize to this size if texture is bigger. The height of texture is based on ratio.
+		/// Set to a high number to disable.
+		/// </summary>
+		public int MaxTextureSize = 8192;
+
+		/// <summary>
 		/// The parent transform for the created GameObject
 		/// </summary>
 		public Transform SceneParent { get; set; }

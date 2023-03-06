@@ -190,6 +190,8 @@ namespace UnityGLTF
 				await CheckMimeTypeAndLoadImage(image, texture, buffer, markGpuOnly);
 			}
 
+			ClampTextureSize(ref texture);
+
 			if (_assetCache.ImageCache[imageCacheIndex] != null) Debug.Log(LogType.Assert, "ImageCache should not be loaded multiple times");
 			if (texture)
 			{
@@ -197,6 +199,24 @@ namespace UnityGLTF
 				progress?.Report(progressStatus);
 			}
 			_assetCache.ImageCache[imageCacheIndex] = texture;
+		}
+
+		private void ClampTextureSize(ref Texture2D texture)
+		{
+			if (texture.width > MaxTextureSize || texture.height > MaxTextureSize)
+			{
+				float ratio = texture.height / (float)texture.width;
+
+				Texture2D smallerTexture = new Texture2D(MaxTextureSize, (int)(MaxTextureSize * ratio), TextureFormat.RGBA32, GenerateMipMapsForTextures);
+				smallerTexture.filterMode = texture.filterMode;
+				smallerTexture.wrapModeU = texture.wrapModeU;
+				smallerTexture.wrapModeV = texture.wrapModeV;
+
+				Graphics.ConvertTexture(texture, smallerTexture);
+
+				UnityEngine.Object.Destroy(texture);
+				texture = smallerTexture;
+			}
 		}
 
 
