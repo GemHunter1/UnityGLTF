@@ -69,7 +69,7 @@ namespace UnityGLTF
 
 				if (IsMultithreaded)
 				{
-					await Task.Run(() => ConvertAttributeAccessorsToUnityTypes(primCache, unityData, vertOffset, i));
+					await Task.Factory.StartNew(() => ConvertAttributeAccessorsToUnityTypes(primCache, unityData, vertOffset, i), TaskCreationOptions.LongRunning);
 				}
 				else
 				{

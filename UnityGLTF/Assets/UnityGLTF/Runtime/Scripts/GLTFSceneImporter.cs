@@ -629,7 +629,7 @@ namespace UnityGLTF
 					}
 					else
 					{
-						await Task.Run(() => ConstructBufferData(node, cancellationToken));
+						await Task.Factory.StartNew(() => ConstructBufferData(node, cancellationToken), TaskCreationOptions.LongRunning);
 					}
 
 					await ConstructNode(node, nodeId, cancellationToken);
