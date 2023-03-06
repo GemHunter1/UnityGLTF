@@ -1,5 +1,7 @@
 # UnityGLTF
 
+This is a fork that adds support for downsampling textures upon load. This is mostly useful for mobile platforms and big models.
+
 ![Good coverage of glTF 2.0 with some exceptions (e.g. arbitrary texCoords are not well supported)](https://img.shields.io/badge/glTF%20Spec-2.0-brightgreen)
 ![Unity 2021.3+ and URP recommended](https://img.shields.io/badge/Unity-2020.3%E2%80%932021.3%2B-brightgreen)
 ![Support for 2018.4–2019.4 is not actively maintained](https://img.shields.io/badge/Unity-2018.4%E2%80%932019.4-yellow)
@@ -42,7 +44,7 @@ You can install this package from git, compatible with UPM (Unity Package Manage
 3. Select <kbd>Add Package from git URL</kbd>
 4. Paste 
    ```
-   https://github.com/prefrontalcortex/UnityGLTF.git?path=/UnityGLTF/Assets/UnityGLTF
+   https://github.com/GemHunter1/UnityGLTF.git?path=/UnityGLTF/Assets/UnityGLTF#resizing
    ```
 4. Click <kbd>Add</kbd>.  
    
