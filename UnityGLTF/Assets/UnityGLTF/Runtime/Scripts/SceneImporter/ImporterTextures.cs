@@ -448,7 +448,7 @@ namespace UnityGLTF
 #endif
 	}
 
-	internal static class MatExt
+	internal static class MatHelper
 	{
 		internal static void SetKeyword(this Material material, string keyword, bool state)
 		{

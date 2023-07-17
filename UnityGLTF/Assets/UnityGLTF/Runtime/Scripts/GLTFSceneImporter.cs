@@ -47,7 +47,8 @@ namespace UnityGLTF
 	{
 		None,
 		Legacy,
-		Mecanim
+		Mecanim,
+		MecanimHumanoid,
 	}
 
 	public class UnityMeshData
@@ -176,6 +177,11 @@ namespace UnityGLTF
 		/// The last created object
 		/// </summary>
 		public GameObject CreatedObject { get; private set; }
+
+		/// <summary>
+		/// All created animation clips
+		/// </summary>
+		public AnimationClip[] CreatedAnimationClips { get; private set; }
 
 		/// <summary>
 		/// Adds colliders to primitive objects when created
@@ -734,8 +740,8 @@ namespace UnityGLTF
 					{
 						for (int i = 0; i < weights.Count; ++i)
 						{
-							// GLTF weights are [0, 1] range but Unity weights are [0, 100] range
-							renderer.SetBlendShapeWeight(i, (float)(weights[i] * 100));
+							// GLTF weights are [0, 1] range; Unity weights must match the frame weight
+							renderer.SetBlendShapeWeight(i, (float)(weights[i] * 1f));
 						}
 					}
 				}
@@ -896,7 +902,7 @@ namespace UnityGLTF
 								}
 							}
 						}
-						else if (_options.AnimationMethod == AnimationMethod.Mecanim)
+						else if (_options.AnimationMethod == AnimationMethod.Mecanim || _options.AnimationMethod == AnimationMethod.MecanimHumanoid)
 						{
 							Animator animator = sceneObj.AddComponent<Animator>();
 #if UNITY_EDITOR
@@ -918,7 +924,14 @@ namespace UnityGLTF
 #else
 						Debug.Log(LogType.Warning, "glTF scene contains animations but com.unity.modules.animation isn't installed. Install that module to import animations.");
 #endif
+						CreatedAnimationClips = constructedClips.ToArray();
 					}
+				}
+
+				if (_options.AnimationMethod == AnimationMethod.MecanimHumanoid)
+				{
+					if (!sceneObj.GetComponent<Animator>())
+						sceneObj.AddComponent<Animator>();
 				}
 
 				CreatedObject = sceneObj;
