@@ -70,7 +70,7 @@ You can also install this package from git, compatible with UPM (Unity Package M
 3. Select <kbd>Add Package from git URL</kbd>
 4. Paste
    ```
-   https://github.com/GemHunter1/UnityGLTF.git?path=/UnityGLTF/Assets/UnityGLTF#resizing
+   https://github.com/GemHunter1/UnityGLTF.git
    ```
 5. Click <kbd>Add</kbd>.
 
